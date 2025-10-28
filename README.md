@@ -30,7 +30,7 @@ src/
 - Gradle (or use the included wrapper)
 
 ### Environment
-Create a `.env` file in the project root and add your API key and recipient wallet:
+Create a `.env` file in the project root and add your api key:
 ```bash
 # Crossmint API Configuration
 CROSSMINT_API_KEY=your_crossmint_api_key_here
@@ -53,29 +53,27 @@ FUND_AMOUNT=10
 ./gradlew run
 ```
 
-Or via IDE: run `Main.java`
 
 ## API Endpoints Used
 
 ### 1. Create Wallet
 - **POST** `/api/2025-06-09/wallets`
-- Creates a smart wallet with external wallet admin signer
+
 
 ### 2. Fund Wallet
 - **POST** `/api/v1-alpha2/wallets/{walletLocator}/balances`
-- Funds wallet with test USDC tokens
+
 
 ### 3. Create Transaction
 - **POST** `/api/2025-06-09/wallets/{walletLocator}/tokens/{chain}:usdc/transfers`
-- Creates USDC transfer transaction
+
 
 ### 4. Approve Transaction
 - **POST** `/api/2025-06-09/wallets/{walletLocator}/transactions/{transactionId}/approvals`
-- Approves transaction with EVM signature
+
 
 ### 5. Get Transaction Status
 - **GET** `/api/2025-06-09/wallets/{walletLocator}/transactions/{transactionId}`
-- Polls transaction status
 
 ## Dependencies
 - **web3j**: EVM keypair generation and message signing
@@ -84,15 +82,8 @@ Or via IDE: run `Main.java`
 - **dotenv-java**: Environment variable loading
 - **SLF4J**: Logging
 
-## Key Features
-- **Real API Integration**: Uses actual Crossmint staging API endpoints
-- **Proper Message Signing**: Signs transaction message hashes correctly
-- **Error Handling**: Comprehensive error handling and logging
-- **Clean Architecture**: Simple, maintainable code structure
-- **Production Ready**: Easy to integrate into existing Java backends
 
 ## Integration Notes
 - Replace `CROSSMINT_API_KEY` with your actual Crossmint API key
 - The demo uses `base-sepolia` testnet by default
-- Message signing uses the exact hash provided by Crossmint API
-- All API calls include proper error handling and logging
+- It uses USDXM (crossmint's test usdc) instead of USDC to be able to fund via API
